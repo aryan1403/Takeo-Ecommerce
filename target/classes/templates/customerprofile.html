@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <title>Customer Profile</title>
+
+    <!-- Custom CSS -->
+    <style>
+        .navbar {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-wrap: wrap;
+            flex-wrap: wrap;
+            -ms-flex-align: center;
+            align-items: center;
+            -ms-flex-pack: justify;
+            justify-content: space-between;
+            padding: 0.5rem 1rem;
+            background-color: aqua;
+        }
+
+        .navbar-expand-lg {
+            
+        }
+
+        .navbar-dark .navbar-brand {
+            color: #000000;
+            /* Website Name color*/
+            font-weight: 600;
+            padding-left: 30px;
+        }
+
+        .bg-dark {
+            background-color: #fff;
+            /* !important */
+        }
+
+        navbar-brand {
+            display: inline-block;
+            padding-top: 0.3125rem;
+            padding-bottom: 0.3125rem;
+            margin-right: 1rem;
+            font-size: 1.25rem;
+            line-height: inherit;
+            white-space: nowrap;
+        }
+
+
+        .nav-link {
+            display: block;
+            padding: 0.5rem 1rem;
+            font-size: 16px;
+            color: pink;
+        }
+
+
+        .card {
+            position: relative;
+            display: -ms-flexbox;
+            display: flex;
+            -ms-flex-direction: column;
+            flex-direction: column;
+            min-width: 0;
+            word-wrap: break-word;
+            background-color: #fff;
+            /* Profile card bg */
+            background-clip: border-box;
+            border: 1px solid rgba(0, 0, 0, 0.125);
+            border-radius: 0.25rem;
+        }
+
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: rgba(208, 81, 81, 0.03);
+            /* Profile  Header */
+            border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+        }
+
+        .card-title {
+            margin-bottom: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+            font-size: 14px;
+            font-weight: 500;
+        }
+    </style>
+
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="#"> Website Name</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#"> Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Products</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"> <i class="fas fa-shopping-cart"></i></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#"><i class="fas fa-sign-out-alt"></i></a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container mt-4">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <div class="card">
+                    <div class="card-header">
+                        <h5 class="card-title">Profile</h5>
+                    </div>
+                    <div class="card-body">
+                        <form action="#" method="post">
+                            <div class="form-group">
+                                <label for="firstName">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName"
+                                    th:value="${customer.firstName}">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastName">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                    th:value="${customer.lastName}">
+                            </div>
+                            <div class="form-group">
+                                <label for="dateOfBirth">Date of Birth</label>
+                                <input type="text" class="form-control" id="dateOfBirth" name="dateOfBirth"
+                                    th:value="${customer.lastName}">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" class="form-control" id="email" name="email"
+                                    th:value="${customer.email}">
+                            </div>
+                            <div class="form-group">
+                                <label for="phoneNumber">Phone Number</label>
+                                <input type="phoneNumber" class="form-control" id="email" name="phoneNumber"
+                                    th:value="${customer.email}">
+                            </div>
+                            <div class="form-group">
+                                <label>Address :</label>
+                            </div>
+                            <div class="form-group">
+                                <label for="streetAddress">Street Address</label>
+                                <!--create street address column in Entity class-->
+                                <input class="form-control" id="streetAddress" name="streetAddress"
+                                    th:text="${customer.address}"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="city">City</label>
+                                <input class="form-control" id="city" name="city" th:text="${customer.address}"></input>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="state">State</label>
+                                <input class="form-control" id="state" name="state"
+                                    th:text="${customer.address}"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="postalCode">Postal Code</label>
+                                <input class="form-control" id="postalCode" name="postalCode"
+                                    th:text="${customer.address}"></input>
+                            </div>
+                            <div class="form-group">
+                                <label for="country">Country</label>
+                                <input type="email" class="form-control" id="country" name="country"
+                                    th:value="${customer.email}">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Save</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
