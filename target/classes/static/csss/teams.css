@@ -1,0 +1,39 @@
+@charset "ISO-8859-1";
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap");
+
+*{
+	padding: 0;
+	margin:0;
+	box-sizing: border-box;
+}
+body{
+	font-family: 'Poppins', sans-serif;
+	background: white silver;
+	background: linear-gradient(to right, white silver, rgba(34,193,195,1));
+	
+	
+}
+.card-img-top{
+	border-radius: 50%;
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin:auto;
+}
+.card{
+	box-shadow: rgba(0,0,0,0.2) 0px 25px 50px -12px;
+	border-radius: 0;
+	padding: 20px;
+	border: none;
+}
+.bi{
+	cursor:pointer;
+	font-size: 25px;
+	color: rgb(255,85,0);
+	
+}
+.bi:hover{
+	color: black;
+	
+}

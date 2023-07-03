@@ -1,11 +1,12 @@
 package com.takeo.ecommerce.entity;
 
-import jakarta.persistence.*;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.*;
 
 
 @Getter
@@ -18,7 +19,7 @@ public class Payment {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private Long id;//String for mango DP
     private String type;
     private String cardName;
     private String cardNumber;

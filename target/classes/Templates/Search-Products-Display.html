@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Books</title>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css">
+
+</head>
+
+<body>
+<div th:insert="fragments/header :: header"></div>
+<div class="container my-2">
+  <div class="card">
+    <div class="card-body">
+      <div th:switch="${products}" class="container my-5">
+        <div class="col-md-12">
+          <table class="table table-striped table-responsive-md">
+            <thead>
+            <tr>
+
+              <th>Image</th>
+              <th>product ID</th>
+              <th>Name</th>
+              <th>Category</th>
+              <th>Publisher Name</th>
+              <th>Product Description</th>
+              <th>Add to Wishlist</th>
+              <th>Add to Cart</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="product : ${products}">
+
+              <td>
+                <img th:src="@{/uploadImage/{filename}(filename=${product.image})}" width="100" height="100" alt="Product Image">
+              </td>
+              <td th:text="${product.id}"></td>
+              <td th:text="${product.name}"></td>
+              <td th:text="${product.categories[0].name}"></td>
+              <td th:text="${product.price}"></td>
+              <td th:text="${product.description}"></td>
+              <td>
+                <button type="button" onclick="addToWishlist('${product.id}')">Add</button>
+              </td>
+              <td>
+                <button type="button" onclick="addToWishlist('${product.id}')">Add</button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <script>
+  function addToWishlist(productId) {
+    // Here, you can implement the logic to add the product to the wishlist
+    // For example, you can make an AJAX request to a server-side script to add the product to the user's wishlist
+    // You can also store the wishlist data in the client-side using JavaScript or utilize browser storage options like LocalStorage or SessionStorage
+    console.log("Product added to wishlist:", productId);
+  }
+</script>
+
+    </div>
+  </div>
+</div>
+</body>
+</html>
