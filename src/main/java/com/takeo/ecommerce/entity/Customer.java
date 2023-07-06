@@ -1,4 +1,4 @@
-package com.takeo.ecommerce.entity;
+package com.takeo.ecommerce.Entity;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Document(collection = "customers")
+@Document(collection = "CUSTOMERS")
 public class Customer {
 
     @Id

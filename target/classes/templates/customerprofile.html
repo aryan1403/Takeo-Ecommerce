@@ -96,6 +96,8 @@
         background-clip: border-box;
         border: 1px solid rgba(0, 0, 0, 0.125);
         border-radius: 0.4rem;
+        margin-left: 20px;
+        padding-left: 10px;
     }
 
     .card-header {
@@ -163,9 +165,32 @@
     .col-lg-auto, .col-xl-1, .col-xl-2, .col-xl-3, .col-xl-4, .col-xl-5, .col-xl-6, .col-xl-7, .col-xl-8, .col-xl-9, .col-xl-10, .col-xl-11, .col-xl-12, .col-xl,
     .col-xl-auto {
       position: relative;
-      width: 70%;
+      width: 100%;
       padding-right: 20px;
       padding-left: 15px;
+}
+
+  .card-img-top {
+    width: 20%;
+    height: auto;
+    padding-left: 10px;
+    padding-top: 20px;
+    border-top-left-radius: calc(0.25rem - 1px);
+    border-top-right-radius: calc(0.25rem - 1px);
+  }
+  
+
+  .row {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    margin-right: 20px;
+    margin-left: -15px;
+  }
+  .card-text {
+    margin-bottom: 0;
+    height: 700px;
 }
 </style>
 </head>
@@ -203,10 +228,13 @@
   <div class="row mt-4">
     <div class="col-sm-4">
       <div class="card">
-        <img src="https://accounts.franklintempleton.com/investor/assets/images/sh-progress/avatar/avatar_man_selected.svg" class="card-img-top"   alt="Profile Image">
+        <img src="./images/man-line-icon.png" class="card-img-top"   alt="Profile Image">
         <div class="card-body">
-          <h5 class="card-title">John Doe</h5>
-          <p class="card-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+          <h5 class="card-title">Mike Hussey</h5>
+          <p class="card-text">Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.
+            Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.
+            Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.Abcdefghijklmnopqrstuxwxyz.
+          </p>
         </div>
       </div>
     </div>
@@ -271,7 +299,7 @@
               <input type="text" class="form-control" id="country" name="country"
                   th:value="${user.Country}">
                   </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Edit</button>
           </form>
         </div>
       </div>
