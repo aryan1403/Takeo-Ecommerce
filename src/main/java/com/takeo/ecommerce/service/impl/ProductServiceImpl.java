@@ -21,6 +21,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public Product createProduct(Product product) {
+
         return productRepository.save(product);
     }
 
@@ -29,7 +30,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     public Product findProductById(Long id) {
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("product not found"));
         return product;
     }
 
@@ -37,12 +38,23 @@ public class ProductServiceImpl implements ProductService {
         productRepository.save(product);
     }
 
-    public void updateProduct(Product product){
+
+
+
+
+    public List<Product> getProductsByIds(List<Long> productIds) {
+        return productRepository.findProductsByIds(productIds);
+    }
+
+
+
+    public Product updateProduct(Product product){
         productRepository.save(product);
+        return product;
     }
 
     public void deleteProduct(Long id){
-        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("Book not found"));
+        Product product = productRepository.findById(id).orElseThrow(() -> new RuntimeException("product not found"));
         productRepository.deleteById(product.getId());
     }
 }

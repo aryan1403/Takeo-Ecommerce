@@ -3,7 +3,9 @@ package com.takeo.ecommerce.controller;
 import java.util.List;
 
 
+import com.takeo.ecommerce.entity.Product;
 import com.takeo.ecommerce.entity.Users;
+import com.takeo.ecommerce.entity.WishList;
 import com.takeo.ecommerce.exception.RecordNotFoundException;
 import com.takeo.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,8 +18,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+import util.SecurityUtils;
 
-
+import javax.servlet.http.HttpSession;
 
 
 @Controller
@@ -74,7 +77,7 @@ public class UserController {
 	public String registration()
 	{
 		
-		return"register.html";
+		return"register";
 	}
 	 @PostMapping("/saveuserbyAdmin")
 	  public  String update(@ModelAttribute Users user, Model model)
@@ -103,7 +106,7 @@ public class UserController {
 				      msg="Try Later!";
 			
 			model.addAttribute("msg",msg);
-			return"index1.html";
+			return"index1";
 					}
 	
 	
@@ -113,7 +116,7 @@ public class UserController {
 	{
 		List<Users>list=service.getAllUsers();
 		model.addAttribute("user",list);
-		return("userdisplay.html");
+		return("userdisplay");
 	}
 	
 	
@@ -122,23 +125,24 @@ public class UserController {
 	public String login()
 	{
 		
-		return"Loginnew";
+		return"Login";
 	}
 	
-	@GetMapping("/LogOut")
+	@GetMapping("/SignUp")
 	public String logout()
 	{
 		
-		return"home.html";
+		return"/";
 	}
 
 	
-	@PostMapping("/login")
-	public String login(@RequestParam("email") String email,@RequestParam("password")String passwor ,Model model) {
+	@PostMapping("/loginValidation")
+	public String login(@RequestParam("email") String email, @RequestParam("password")String passwor , Model model, HttpSession session) {
 	 Users user =service.getUserInfo(email, passwor);
-	
+		       session.setAttribute("users", user);
 	              if(user!=null) {
-	             if (user.getRole_id() == 1) 
+	             if (user.getRole_id() == 1)
+
 		      
 	             return "redirect:/Admin";
 	             
@@ -146,7 +150,7 @@ public class UserController {
 	        
 	              } else {
 	               model.addAttribute("error", "Invalid username or password");
-	               return "loginnew";
+	               return "login";
 	        }}
     
 	   @GetMapping("/Admin")
@@ -162,14 +166,15 @@ public class UserController {
 	    		
 	    		return"Dashbord";
 	    	}
-	   @RequestMapping("/editUser/{uid}")
+	   @RequestMapping("Admin/editUser/{uid}")
 		public String edituser(@PathVariable int uid,Model model) {
 		Users c=service.getUserById(uid);
 			model.addAttribute("pol",c);
-			return "updateUser.html";
+			return "UserUpdateByAdmin.html";
 		}
-		@RequestMapping("/deleteUser/{uid}")
+		@RequestMapping("Admin/deleteUser/{uid}")
 		public String deleteUser(@PathVariable int uid) {
+			//int userId=SecurityUtils.getCurrentUser().getUid();
 			service.deleteUser(uid);
 			return "redirect:/getusers";
 		}
@@ -187,12 +192,35 @@ public class UserController {
 		        model.addAttribute("psw", b);
 		        
 		    } catch (RecordNotFoundException e) {
-		        model.addAttribute("error", "User not found");
+		        model.addAttribute("msg", "User not found");
 		    }
-			return "loginnew";
+			return "login";
 
 		}
+	@GetMapping("/UserProfile")
+	public String userProfile( HttpSession session, Model model) {
+		Users user = (Users) session.getAttribute("users");
+		System.out.println(user.getUname());
+		if (user == null) {
+			return "redirect:/login";
+		}
 
+		model.addAttribute("User",user);
+
+		return "UserProfile";
+	}
+	@RequestMapping("User/editUser/{uid}")
+	public String editByuser(@PathVariable int uid,Model model) {
+		Users c=service.getUserById(uid);
+		model.addAttribute("pol",c);
+		return "updateUser";
+	}
+	@RequestMapping("User/deleteUser/{uid}")
+	public String deleteByUser(@PathVariable int uid) {
+		//int userId=SecurityUtils.getCurrentUser().getUid();
+		service.deleteUser(uid);
+		return "redirect:/getusers";
+	}
 	}
 
 	

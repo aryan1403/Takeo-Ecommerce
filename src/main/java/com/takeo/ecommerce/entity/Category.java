@@ -19,10 +19,15 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "name", length = 50, nullable = false, unique = true)
+    //@Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
 
-    @ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "category", cascade =
+            {CascadeType.MERGE,
+            CascadeType.PERSIST },
+            fetch = FetchType.LAZY
+            )
+
     private Set<Product> products = new HashSet<Product>();
 
     public Category(String name) {

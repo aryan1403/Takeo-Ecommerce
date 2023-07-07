@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <script src="https://kit.fontawesome.com/d1e93aa8c8.js" crossorigin="anonymous"></script>
+  <div th:replace="fragments/Dashbord :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/Dashbord :: navbar"></div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <h3 class="text-inside-will-center" th:text="${msg}"></h3>
+  <div class="container my-2">
+    <div class="card">
+      <div class="card-body">
+        <div th:switch="${User}" class="container my-5">
+          <div class="col-md-12">
+            <table class="table table-striped table-responsive-md">
+              <tr>
+                <td>User ID</td>
+                <td th:text="${User.uid}"></td>
+              </tr>
+              <tr>
+                <td>Name</td>
+                <td th:text="${User.uname}"></td>
+              </tr>
+              <tr>
+                <td>Address</td>
+                <td th:text="${User.address}"></td>
+              </tr>
+
+              <tr>
+                <td>City</td>
+                <td th:text="${User.city}"></td>
+              </tr>
+              <tr>
+                <td>state</td>
+                <td th:text="${User.state}"></td>
+              </tr>
+              <tr>
+                <td>Zip Code</td>
+                <td th:text="${User.zip}"></td>
+              </tr>
+              <tr>
+                <td>Gender</td>
+                <td th:text="${User.gender}"></td>
+              </tr>
+              <tr>
+                <td>email</td>
+                <td th:text="${User.email}"></td>
+              </tr>
+              <tr>
+                <td>password</td>
+                <td th:text="${User.password}"></td>
+              </tr>
+            </table>
+            <a style="color:blue" th:href="@{/User/editUser/{uid}(uid=${User.uid})}"><i class="fa-solid fa-pen-to-square ms-4"></i></a>
+            <a style="color:red" th:href="@{/User/deleteUser/{uid}(uid=${User.uid})}"><i class="fa-solid fa-trash ms-4"></i></a></td>
+            </table>
+          </div>
+        </div>
+      </div>
+
+</body>
+
+</html>

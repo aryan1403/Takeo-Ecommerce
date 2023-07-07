@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/header :: navbar"></div>
+<div class="container my-5 p-5" style="border:1px solid black;">
+  <h4 class="text-center">Edit user profile</h4>
+  <form class="col-md-4 offset-md-4" th:action="@{/saveuserbyAdmin}" method="post" th:object="${pol}">
+
+    <input type="hidden" name="uid" th:value="${pol.uid}" />
+    <div class="mb-3">
+      <label for="uname" class="form-label">Username</label>
+      <input type="text" id="uname" class="form-control" name="uname" th:value="${pol.uname}" />
+    </div>
+    <div class="mb-3">
+      <label for="address" class="form-label">Address</label>
+      <input type="text" id="address" class="form-control" name="address" th:value="${pol.address}" />
+    </div>
+    <div class="mb-3">
+      <label for="city" class="form-label">City</label>
+      <input type="text" id="city" class="form-control" name="city" th:value="${pol.city}" />
+    </div>
+    <div class="mb-3">
+      <label for="state" class="form-label">State</label>
+      <input type="text" id="state" class="form-control" name="state" th:value="${pol.state}" />
+    </div>
+    <div class="mb-3">
+      <label for="zip" class="form-label">Zip</label>
+      <input type="text" id="zip" class="form-control" name="zip" th:value="${pol.zip}" />
+    </div>
+    <div class="mb-3">
+      <label for="phone" class="form-label">Phone</label>
+      <input type="text" id="phone"class="form-control" name="phone" th:value="${pol.phone}" />
+    </div>
+    <div class="mb-3">
+      <label for="email" class="form-label">Email</label>
+      <input type="text" id="email"class="form-control" name="email" th:value="${pol.email}" />
+    </div>
+    <div class="mb-3">
+      <label for="password" class="form-label">Password</label>
+      <input type="password" id="password"class="form-control" name="password" th:value="${pol.password}" />
+    </div>
+    <center>
+      <button type="submit" class="btn btn-primary">Update User</button>
+    </center>
+  </form>
+
+</div>
+
+
+
+</body>
+</html>

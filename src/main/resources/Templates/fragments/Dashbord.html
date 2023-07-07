@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="header">
+  <style>
+    .navbar-nav {
+      display: flex;
+      align-items: center;
+    }
+
+    .search-container {
+      margin-right: 10px;
+      position: relative;
+    }
+
+    .search-input {
+      padding-right: 40px;
+    }
+
+    .search-button {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40px;
+      height: 100%;
+      padding: 5px;
+    }
+  </style>
+  <meta charset="UTF-8">
+  <title>E-commerce App</title>
+  <link crossorigin="anonymous"
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+        rel="stylesheet">
+  <link rel ="stylesheet" type ="text/css" href="csss/pay.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" th:fragment="navbar">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">E-commerce App</a>
+    <button aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarSupportedContent" data-bs-toggle="collapse" type="button">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/UserProducts}" >Home</a>
+        </li>
+        <li class="nav-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/UserProfile}" >Profile</a>
+        </li>
+        <li class="nav-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/order}" >save&Payment</a>
+        </li>
+        <li class="nav-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/User/WishListsDisplay}" >WishList</a>
+        </li>
+        <li class="nav-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/User/WishListsDisplay}" >Cart</a>
+        </li>
+        <li class="nav-item logout-item">
+          <a aria-current="page" class="nav-link active" th:href="@{/}">Logout</a>
+        </li>
+      </ul>
+      <ul class="navbar-nav ml-auto">
+        <li class="nav-item">
+          <div class="search-container">
+            <form th:action="@{/search}" method="get" class="search-form">
+              <input type="text" placeholder="Search.." name="search" class="search-input"><i class="fa fa-search"></i>>
+              <i class="fa fa-search"></i>
+            </form>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+</body>
+</html>

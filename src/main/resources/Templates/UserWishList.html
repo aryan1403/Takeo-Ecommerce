@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+  <head>
+    <style>
+    html, body {
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .product-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .product-box {
+        text-align: center;
+        padding: 20px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        background-color: #f2f2f2;
+    }
+</style>
+    <div th:replace="fragments/Dashbord :: header"></div>
+  </head>
+
+<body>
+<div th:replace="fragments/Dashbord :: navbar"></div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <h3 class="text-inside-will-center" th:text="${msg}"></h3>
+</div>
+<h2>WishList</h2>
+<div class="product-container">
+  <div th:each="product : ${products}" class="product-box">
+    <h3 th:text="${product.id}" class="product-id" style="display: none;"></h3>
+    <img th:src="@{/uploadImage/{filename}(filename=${product.image})}" width="100" height="100" alt="Product Image">
+    <h3 th:text="${product.name}" class="product-name"></h3>
+    <p th:text="${product.description}" class="product-description"></p>
+    <p th:text="'Price: $' + ${product.price}" class="product-price"></p>
+    <div class="product-buttons">
+      <a th:href="@{/buy/{id}(id=${product.id})}" class="buy-button">Buy</a>
+      <a th:href="@{/addWishList/{productId}(productId=${product.id})}" class="add-to-cart-button">Add to Cart</a>
+    </div>
+  </div>
+</div>
+</body>
+
+</html>

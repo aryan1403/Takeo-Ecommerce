@@ -69,28 +69,28 @@ public class ProductController {
     public String main()
     {
 
-        return"index.html";
+        return"index1";
     }
     @GetMapping("/products")
-    public String findAllProducts(Model model) {
+    public String findAllProducts(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "Products";
     }
     @GetMapping("/UserProducts")
-    public String findProductsForUser(Model model) {
+    public String findProductsForUser(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "Dashbord";
     }
     @GetMapping("/New-UserProducts")
-    public String findProductsForNewUser(Model model) {
+    public String findProductsForNewUser(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "NewUser-Product-Display";
     }
     @GetMapping("/product/{id}")
-    public String findProduct(@PathVariable Long id, Model model) {
+    public String findProduct(@PathVariable Long id, @NotNull Model model) {
         Product product = productService.findProductById(id);
         model.addAttribute("product", product);
         return "list-Products";
@@ -103,35 +103,22 @@ public class ProductController {
         return "products";
     }
 
-    @GetMapping("/update-product/{id}")
-    public String updateProduct(@PathVariable Long id, @NotNull Model model) {
-        Product product = productService.findProductById(id);
-        model.addAttribute("product", product);
-        model.addAttribute("categories", categoryService.findAllCategories());
-        //model.addAttribute("publishers", publisherService.findAllPublishers());
-        //model.addAttribute("authors", authorService.findAllAuthors());
-        return "update-product";
-    }
 
-    @PostMapping("/save-update/{id}")
-    public String updateProduct(@PathVariable Long id, Product product, @NotNull BindingResult result, Model model) {
-        if (result.hasErrors()) {
-            return "update-product";
-        }
-        productService.updateProduct(product);
-        model.addAttribute("products", productService.findAllProducts());
-        return "redirect:/products";
-    }
+
     @GetMapping("/add-product")
     public String addProduct(Product product, @NotNull Model model) {
         model.addAttribute("categories", categoryService.findAllCategories());
-        return "add-product";
+        return "addProduct";
     }
     @PostMapping("/save-product")
     public String addProduct(@ModelAttribute("product") @Valid Product product,
                              BindingResult bindingResult,
                              @RequestParam("image") @NotNull MultipartFile image,
                              Model model) {
+             /* if(bindingResult.hasErrors()){
+              model.addAttribute("product",product);
+              return "redirect:/add-product";
+                 }*/
 
         // Save the product to the database
         Product save = productService.createProduct(product);
@@ -160,11 +147,60 @@ public class ProductController {
                 productService.updateProduct(product);
             } catch (Exception e) {
                 e.printStackTrace();
+
             }
         }
 
-        model.addAttribute("message", "Product added successfully!");
+        model.addAttribute("msg", "Product added successfully!");
 
+        return "redirect:/products";
+    }
+
+    @GetMapping("/update-product/{id}")
+    public String updateProduct(@PathVariable Long id, @NotNull Model model) {
+        Product product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categoryService.findAllCategories());
+        return "update-product";
+    }
+    @PostMapping("/save-update/{id}")
+    public String updateProduct(@PathVariable Long id,@RequestParam("image")
+                                @NotNull MultipartFile image, Product product,
+                                @NotNull BindingResult result, Model model) {
+               /* if (result.hasErrors()) {
+                 return "update-product";
+                       }*/
+
+           Product save=productService.updateProduct(product);
+              product.setImage(image.getOriginalFilename());
+              if (save != null) {
+            try {
+                // Define the directory to save the uploaded image
+                String uploadDir = "static/uploadImage";
+                String absolutePath = new ClassPathResource(uploadDir).getFile().getAbsolutePath();
+
+                // Create the directory if it doesn't exist
+                File directory = new File(absolutePath);
+                if (!directory.exists()) {
+                    directory.mkdirs();
+                }
+
+                // Generate a unique file name
+                String fileName =image.getOriginalFilename();
+
+                // Save the image file to disk
+                Path path = Paths.get(absolutePath + File.separator + fileName);
+                Files.copy(image.getInputStream(), path, StandardCopyOption.REPLACE_EXISTING);
+
+                // Update the product's image URL
+                product.setImage(fileName);
+                productService.updateProduct(product);
+            } catch (Exception e) {
+                e.printStackTrace();
+
+            }
+        }
+        model.addAttribute("products", productService.findAllProducts());
         return "redirect:/products";
     }
 
