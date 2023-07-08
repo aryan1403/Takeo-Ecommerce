@@ -1,4 +1,4 @@
-package com.takeo.ecommerce.service;
+package com.takeo.ecommerce.service.impl;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,6 +6,7 @@ import java.util.Optional;
 import com.takeo.ecommerce.entity.Users;
 import com.takeo.ecommerce.exception.RecordNotFoundException;
 import com.takeo.ecommerce.repository.UserRepo;
+import com.takeo.ecommerce.service.UserDAO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class UserService implements UserDAO{
+public class UserService implements UserDAO {
 @Autowired
 private UserRepo uRepo;
 

@@ -38,10 +38,10 @@
               <td th:text="${product.price}"></td>
               <td th:text="${product.description}"></td>
               <td>
-                <button type="button" onclick="addToWishlist('${product.id}')">Add WishList</button>
+                <button type="button" onclick="@{User/addCart/{productId}(productId=${product.id})}">Add Cart</button>
               </td>
               <td>
-                <button type="button" onclick="addToWishlist('${product.id}')">Add Tp Cart</button>
+                <button type="button" onclick="@{/User/addWishList/{productId}(productId=${product.id})}">Add Tp WishList</button>
               </td>
             </tr>
             </tbody>

@@ -5,7 +5,7 @@ import com.takeo.ecommerce.entity.Users;
 
 
 import com.takeo.ecommerce.entity.WishList;
-import com.takeo.ecommerce.service.UserService;
+import com.takeo.ecommerce.service.impl.UserService;
 import com.takeo.ecommerce.service.impl.ProductServiceImpl;
 import com.takeo.ecommerce.service.impl.WishlistServiceImpl;
 import org.jetbrains.annotations.NotNull;
@@ -41,7 +41,7 @@ public class WishListController {
         // Retrieve or create the user's wishlist
        WishList wishList=new WishList();
        wishList.setCreatedBy(user);
-       wishList.setProducts((List<Product>) product);
+       wishList.setProduct(product);
        WishList wishList1=wishlistServiceimpl.createWishList(wishList);
        model.addAttribute("msg","added in wishList successfully");
        return "redirect:/UserProducts";
@@ -58,4 +58,12 @@ public class WishListController {
         model.addAttribute("products",productList );
         return "UserWishList";
     }
+
+    @GetMapping("/delete/{id}")
+    public String deleteProductFromWishlist(@PathVariable Long id, @NotNull Model model) {
+            wishlistServiceimpl.deleteProductFromWishlist(id);
+              model.addAttribute("msg","Remove successfully");
+        return "redirect:/User/WishListsDisplay?success";
+    }
+
 }

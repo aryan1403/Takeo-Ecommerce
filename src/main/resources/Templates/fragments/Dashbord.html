@@ -56,7 +56,11 @@
           <a aria-current="page" class="nav-link active" th:href="@{/User/WishListsDisplay}" >WishList</a>
         </li>
         <li class="nav-item">
-          <a aria-current="page" class="nav-link active" th:href="@{/User/WishListsDisplay}" >Cart</a>
+          <a aria-current="page" class="nav-link active" th:href="@{/User/CartDisplay}">Cart<i class="fa fa-shopping-cart"></i></a>
+          <div class="cart-box">
+            <span class="cart-quantity" th:text="${cartQuantity}">0</span>
+            <span class="cart-text"></span>
+          </div>
         </li>
         <li class="nav-item logout-item">
           <a aria-current="page" class="nav-link active" th:href="@{/}">Logout</a>

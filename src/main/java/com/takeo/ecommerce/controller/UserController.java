@@ -3,11 +3,9 @@ package com.takeo.ecommerce.controller;
 import java.util.List;
 
 
-import com.takeo.ecommerce.entity.Product;
 import com.takeo.ecommerce.entity.Users;
-import com.takeo.ecommerce.entity.WishList;
 import com.takeo.ecommerce.exception.RecordNotFoundException;
-import com.takeo.ecommerce.service.UserService;
+import com.takeo.ecommerce.service.impl.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,8 +15,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
-import util.SecurityUtils;
 
 import javax.servlet.http.HttpSession;
 

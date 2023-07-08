@@ -1,5 +1,6 @@
 package com.takeo.ecommerce.service;
 
+import com.takeo.ecommerce.entity.Users;
 import com.takeo.ecommerce.entity.WishList;
 import org.springframework.data.repository.query.Param;
 
@@ -18,6 +19,7 @@ public interface WishListService {
 
     void updateWishList(WishList wishList);
 
-    void deleteWishList(Integer wishlistID);
+    public void deleteWishList(Integer wishlistID);
 
+    WishList findByProduct(long id);
 }

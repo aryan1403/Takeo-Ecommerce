@@ -46,10 +46,6 @@ public class Product {
     private LocalDateTime lastUpdated;
     @ManyToOne
     private Category category;
-    @ManyToMany(mappedBy = "products", cascade = CascadeType.ALL)
-    private List<WishList> wishList;
-
-
     /*public void removeCategory(Category category){
         this.categories.remove(category);
         category.getProducts().remove(category);

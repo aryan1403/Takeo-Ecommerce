@@ -15,7 +15,7 @@
 
 
 <div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
-  <h3 class="text-inside-will-center" th:text="${msg}"></h3>
+  <h3 class="text-inside-will-center" th:text="${products}"></h3>
 </div>
 
 <h2>Responsive Checkout</h2>
@@ -62,7 +62,7 @@
                 <select id="Payment.type" name="Payment.type">
                     <option value="Debit">Debit</option>
                     <option value="Credit">Credit</option>
-
+                </select>
 
             <label for="Payment.cardNumber">Credit card number</label>
             <input type="text" id="Payment.cardNumber" name="Payment.cardNumber" placeholder="1234-4567-1234-6543">
@@ -87,11 +87,10 @@
               </label>
               <input type="submit" value="Continue to checkout" class="btn">
             </div>
-            </div>
+           </div>
            </div>
            </div>
         </form>
-
     </div>
   </div>
 

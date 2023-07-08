@@ -40,7 +40,7 @@
     <p th:text="${product.description}" class="product-description"></p>
     <p th:text="'Price: $' + ${product.price}" class="product-price"></p>
     <div class="product-buttons">
-      <a th:href="@{/buy/{id}(id=${product.id})}" class="buy-button">Add To Cart</a>
+      <a th:href="@{User/addCart/{productId}(productId=${product.id})}" class="buy-button">Add To Cart</a>
       <a th:href="@{/User/addWishList/{productId}(productId=${product.id})}" class="add-to-cart-button">Add to WishList</a>
     </div>
   </div>

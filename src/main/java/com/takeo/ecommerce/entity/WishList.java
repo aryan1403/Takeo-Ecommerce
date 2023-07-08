@@ -24,12 +24,14 @@ public class WishList {
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
 
+
     @ManyToOne
     //@JoinColumn(name = "created_by", nullable = false)
     @JoinColumn(name = "created_by")
     private Users createdBy;
-    @ManyToMany
-    @JoinColumn(name = "product_id")
-    private List<Product> products;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "product_id")//,nullable=false, updatable=false)
+    private Product product;
+
 
 }

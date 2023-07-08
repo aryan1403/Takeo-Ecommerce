@@ -1,6 +1,7 @@
 package com.takeo.ecommerce.service.impl;
 
 
+import com.takeo.ecommerce.entity.Users;
 import com.takeo.ecommerce.entity.WishList;
 import com.takeo.ecommerce.repository.ProductRepository;
 import com.takeo.ecommerce.repository.UserRepo;
@@ -11,6 +12,9 @@ import org.springframework.stereotype.Service;
 
 
 import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+
 @Service
 public class WishlistServiceImpl implements WishListService {
     @Autowired
@@ -57,5 +61,17 @@ public class WishlistServiceImpl implements WishListService {
     @Override
     public void deleteWishList(Integer wishlistID) {
 
+        wishListRepo.deleteById(wishlistID);
+
     }
-}
+    @Override
+    public WishList findByProduct(long id) {
+        return null;
+    }
+    public void deleteProductFromWishlist(Long productId) {
+        WishList wishList = wishListRepo.findByProduct_Id(productId);
+        if (wishList != null) {
+            wishListRepo.delete(wishList);
+
+
+}}}

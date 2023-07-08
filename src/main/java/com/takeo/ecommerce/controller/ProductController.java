@@ -29,7 +29,7 @@ import java.util.UUID;
 
 @Controller
 public class ProductController {
-@Autowired
+    @Autowired
     private ProductServiceImpl productService;
 
 
@@ -44,12 +44,13 @@ public class ProductController {
         return productService.createProduct(product);
     }*/
 
- @GetMapping("/search")
-    public String searchProducts(@RequestParam("search") String search, HttpSession session,Model model){
-        List<Product>list=productService.searchProducts(search);
-        if(list!=null){
-            model.addAttribute("products",list);
-           return "Search-Products-Display";}
+    @GetMapping("/search")
+    public String searchProducts(@RequestParam("search") String search, HttpSession session, Model model) {
+        List<Product> list = productService.searchProducts(search);
+        if (list != null) {
+            model.addAttribute("products", list);
+            return "Search-Products-Display";
+        }
         session.setAttribute("msg", "product not found");
 
         return "/";
@@ -57,7 +58,7 @@ public class ProductController {
     }
 
     @PostMapping
-    public Product createProduct(@RequestBody Product product){
+    public Product createProduct(@RequestBody Product product) {
         return productService.createProduct(product);
     }
 
@@ -66,29 +67,32 @@ public class ProductController {
 
 
     @RequestMapping("/")
-    public String main()
-    {
+    public String main() {
 
-        return"index1";
+        return "index1";
     }
+
     @GetMapping("/products")
     public String findAllProducts(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "Products";
     }
+
     @GetMapping("/UserProducts")
     public String findProductsForUser(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "Dashbord";
     }
+
     @GetMapping("/New-UserProducts")
     public String findProductsForNewUser(@NotNull Model model) {
         List<Product> products = productService.findAllProducts();
         model.addAttribute("products", products);
         return "NewUser-Product-Display";
     }
+
     @GetMapping("/product/{id}")
     public String findProduct(@PathVariable Long id, @NotNull Model model) {
         Product product = productService.findProductById(id);
@@ -104,12 +108,12 @@ public class ProductController {
     }
 
 
-
     @GetMapping("/add-product")
     public String addProduct(Product product, @NotNull Model model) {
         model.addAttribute("categories", categoryService.findAllCategories());
         return "addProduct";
     }
+
     @PostMapping("/save-product")
     public String addProduct(@ModelAttribute("product") @Valid Product product,
                              BindingResult bindingResult,
@@ -136,7 +140,7 @@ public class ProductController {
                 }
 
                 // Generate a unique file name
-                String fileName =image.getOriginalFilename();
+                String fileName = image.getOriginalFilename();
 
                 // Save the image file to disk
                 Path path = Paths.get(absolutePath + File.separator + fileName);
@@ -163,17 +167,18 @@ public class ProductController {
         model.addAttribute("categories", categoryService.findAllCategories());
         return "update-product";
     }
+
     @PostMapping("/save-update/{id}")
-    public String updateProduct(@PathVariable Long id,@RequestParam("image")
-                                @NotNull MultipartFile image, Product product,
+    public String updateProduct(@PathVariable Long id, @RequestParam("image")
+    @NotNull MultipartFile image, Product product,
                                 @NotNull BindingResult result, Model model) {
                /* if (result.hasErrors()) {
                  return "update-product";
                        }*/
 
-           Product save=productService.updateProduct(product);
-              product.setImage(image.getOriginalFilename());
-              if (save != null) {
+        Product save = productService.updateProduct(product);
+        product.setImage(image.getOriginalFilename());
+        if (save != null) {
             try {
                 // Define the directory to save the uploaded image
                 String uploadDir = "static/uploadImage";
@@ -186,7 +191,7 @@ public class ProductController {
                 }
 
                 // Generate a unique file name
-                String fileName =image.getOriginalFilename();
+                String fileName = image.getOriginalFilename();
 
                 // Save the image file to disk
                 Path path = Paths.get(absolutePath + File.separator + fileName);
@@ -204,5 +209,19 @@ public class ProductController {
         return "redirect:/products";
     }
 
+    @GetMapping("/Buy/{productId}")
+    public String buyProductById(@PathVariable("productId") Long productId, Model model) {
+        Product product = productService.findProductById(productId);
+        if (product != null) {
+            BigDecimal price=product.getPrice();
+            model.addAttribute("products",price);
+            return "redirect:/order";}
+          return "redirect:/products";
 
-}
+
+        }
+    }
+
+
+
+
