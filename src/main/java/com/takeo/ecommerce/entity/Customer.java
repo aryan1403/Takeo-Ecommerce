@@ -18,14 +18,14 @@ public class Customer {
     private String firstName;
     private String lastName;
     private String dateOfBirth;
+    private String sex;
     private String email;
+    private String password;
     private String phoneNumber;
     private String streetAddress;
     private String city;
     private String state;
     private String postalCode;
     private String country;
-    // private Payment savedPayment;
-    // private <Product> wishlist;
-    // private <Product> cartItems;
+ 
 }

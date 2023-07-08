@@ -32,7 +32,6 @@
         }
 
 
-        .navbar-expand-lg {}
 
         /* Website Name color*/
         .navbar-dark .navbar-brand {
@@ -196,31 +195,31 @@
                         <h5 class="card-title">Profile</h5>
                     </div>
                     <div class="card-body">
-                        <form action="#" method="post">
+
+                        <form th:action="@{/processRegistration}" method="post" th:object="${customer}">
                             <div class="form-group">
                                 <label for="firstName">First Name</label>
                                 <input type="text" class="form-control" id="firstName" name="firstName"
-                                    th:value="${user.firstName}">
+                                    th:field="*{firstName}">
                             </div>
                             <div class="form-group">
                                 <label for="lastName">Last Name</label>
                                 <input type="text" class="form-control" id="lastName" name="lastName"
-                                    th:value="${user.lastName}">
+                                    th:field="*{lastName}">
                             </div>
                             <div class="form-group">
                                 <label for="dateOfBirth">Date of Birth</label>
                                 <input type="date" class="form-control" id="dateOfBirth" name="dateOfBirth"
-                                    th:value="${user.dateOfBirth}">
+                                    th:field="*{dateOfBirth}">
                             </div>
                             <div class="form-group">
                                 <label for="email">Email</label>
-                                <input type="email" class="form-control" id="email" name="email"
-                                    th:value="${user.email}">
+                                <input type="email" class="form-control" id="email" name="email" th:field="*{email}">
                             </div>
                             <div class="form-group">
                                 <label for="phoneNumber">Phone Number</label>
                                 <input type="tel" class="form-control" id="email" name="phoneNumber"
-                                    th:value="${user.phoneNumber}">
+                                    th:field="*{phoneNumber}">
                             </div>
                             <div class="form-group">
                                 <label>Address :</label>
@@ -229,27 +228,26 @@
                                 <label for="streetAddress">Street Address</label>
                                 <!--create street address column in Entity class-->
                                 <input type="text" class="form-control" id="streetAddress" name="streetAddress"
-                                    th:value="${user.streetAddress}">
+                                    th:field="*{streetAddress}">
                             </div>
                             <div class="form-group">
                                 <label for="city">City</label>
-                                <input type="text" class="form-control" id="city" name="city" th:value="${user.city}">
+                                <input type="text" class="form-control" id="city" name="city" th:field="*{city}">
                             </div>
 
                             <div class="form-group">
                                 <label for="state">State</label>
-                                <input type="text" class="form-control" id="state" name="state"
-                                    th:value="${user.state}">
+                                <input type="text" class="form-control" id="state" name="state" th:field="*{state}">
                             </div>
                             <div class="form-group">
                                 <label for="postalCode">Postal Code</label>
                                 <input type="text" class="form-control" id="postalCode" name="postalCode"
-                                    th:value="${user.postalCode}">
+                                    th:field="*{postalCode}">
                             </div>
                             <div class="form-group">
                                 <label for="country">Country</label>
                                 <input type="text" class="form-control" id="country" name="country"
-                                    th:value="${user.Country}">
+                                    th:field="*{Country}">
                             </div>
                             <button type="submit" class="btn btn-primary">Save</button>
                         </form>
