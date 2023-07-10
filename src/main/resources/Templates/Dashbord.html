@@ -28,9 +28,9 @@
 
 <body>
 <div th:replace="fragments/Dashbord :: navbar"></div>
-    <div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+    <!--<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
       <h3 class="text-inside-will-center" th:text="${msg}"></h3>
-    </div>
+    </div> -->
 <h4>Product List</h4>
 <div class="product-container">
   <div th:each="product : ${products}" class="product-box">
@@ -45,6 +45,7 @@
     </div>
   </div>
 </div>
+
 </body>
 
 </html>

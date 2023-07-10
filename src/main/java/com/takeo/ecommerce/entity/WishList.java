@@ -32,6 +32,9 @@ public class WishList {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")//,nullable=false, updatable=false)
     private Product product;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id")
+    private Category category;
 
 
 }

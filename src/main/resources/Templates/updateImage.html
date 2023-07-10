@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <div th:replace="fragments/header :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/header :: navbar"></div>
+
+<p th:text="${msg}"></p>
+<div class="container my-2">
+  <div class="card">
+    <div class="card-body">
+      <form th:action="@{/products/{id}/upload}" method="POST" enctype="multipart/form-data" th:object="${product}">
+        <div class="row">
+          <!--<input type="hidden" name="id" th:field="*${id}" /> -->
+          <div class="form-group col-md-8">
+            <label for="sku" class="col-form-label">sku</label>
+            <input type="text" th:field="*{sku}" class="form-control" id="sku" placeholder="sku"/>
+          </div>
+
+          <div class="form-group col-md-8">
+            <label for="name" class="col-form-label">Product Name</label>
+            <input type="text" th:field="*{name}" class="form-control" id="name" placeholder="product Name"/>
+          </div>
+
+          <div class="form-group col-md-8">
+            <label for="price" class="col-form-label">Price</label>
+            <input type="number" th:field="*{price}" class="form-control" id="price" placeholder="200"/>
+          </div>
+          <div class="form-group col-md-8">
+            <label for="active" class="col-form-label">Active or Passive</label>
+            <input type="text" th:field="*{active}" class="form-control" id="active"
+                   placeholder="active"/>
+          </div>
+
+          <div class="form-group col-md-8">
+            <label for="description" class="col-form-label">Product Description</label>
+            <textarea type="text" th:field="*{description}" class="form-control" id="description"
+                      placeholder="Product Description" rows="4" cols="20"></textarea>
+          </div>
+          <div class="form-group col-md-8">
+            <label for="categories" class="col-form-label">Category</label>
+            <select th:field="*{category}" class="form-control">
+              <option th:each="category: ${categories}" th:value="${category.id}"
+                      th:text="${category.name}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group col-md-8">
+          <label for="image" class="col-form-label">Image</label>
+          <input type="file" th:field="*{image}" class="form-control" id="image" placeholder="product image"/>
+        </div>
+        <img th:src="@{/uploadImage/{filename}(filename=${product.image})}" width="30" height="40" alt="Product Image">
+
+        <div class="col-md-6">
+          <input type="submit" class="btn btn-primary" value=" Submit ">
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+</body>
+</html>

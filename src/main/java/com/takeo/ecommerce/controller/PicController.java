@@ -1,4 +1,4 @@
-package com.takeo.ecommerce.controller;
+/*package com.takeo.ecommerce.controller;
 
 
 import com.takeo.ecommerce.entity.Images;
@@ -81,4 +81,4 @@ public class PicController {
         return "picsave";
 
     }
-}
+}*/

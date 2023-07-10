@@ -28,8 +28,8 @@
                                 <th scope="col">Qty</th>
                                 <th scope="col">product Name</th>
                                 <th scope="col">Description</th>
-                                <th scope="col">price</th>
-                                <th scope="col">active</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Stock</th>
                                 <th scope="col">image</th>
                             </tr>
                             </thead>
@@ -52,6 +52,9 @@
                                         class="fas fa-edit ml-2"></i></a></td> <!-- edit product-->
                                 <td><a th:href="@{/remove-product/{id}(id=${product.id})}" class="btn btn-primary"><i
                                         class="fas fa-user-times ml-2"></i></a></td> <!-- Delete Product-->
+                                <td><a th:href="@{/update-image/{id}(id=${product.id})}" class="btn btn-primary"><i
+                                        class="fa-thin fa-images ml-2"></i></a></td> <!--edit Image-->
+
                             </tr>
                             </tbody>
                         </table>

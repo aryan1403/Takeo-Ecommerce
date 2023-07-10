@@ -28,24 +28,7 @@ public class WishListController {
     private UserService userService;
     @Autowired
     private ProductServiceImpl productService;
-    @GetMapping("User/addWishList/{productId}")
-    public String addToWishlist(@PathVariable Long productId, @NotNull HttpSession session, Model model) {
-        Users user = (Users) session.getAttribute("users");
-        System.out.println(user.getUname());
-        if (user == null) {
-            // User not logged in, redirect to login page
-            return "redirect:/login";
-        }
-        Product product =productService.findProductById(productId);
-        product.getName();
-        // Retrieve or create the user's wishlist
-       WishList wishList=new WishList();
-       wishList.setCreatedBy(user);
-       wishList.setProduct(product);
-       WishList wishList1=wishlistServiceimpl.createWishList(wishList);
-       model.addAttribute("msg","added in wishList successfully");
-       return "redirect:/UserProducts";
-}
+
     @GetMapping("User/WishListsDisplay")
     public String findAllWishLists(@NotNull Model model, @NotNull HttpSession session) {
         Users user = (Users) session.getAttribute("users");
@@ -62,8 +45,33 @@ public class WishListController {
     @GetMapping("/delete/{id}")
     public String deleteProductFromWishlist(@PathVariable Long id, @NotNull Model model) {
             wishlistServiceimpl.deleteProductFromWishlist(id);
-              model.addAttribute("msg","Remove successfully");
         return "redirect:/User/WishListsDisplay?success";
     }
+    @GetMapping("User/addWishList/{productId}")
+    public String addToWishlist(@PathVariable Long productId, @NotNull HttpSession session, Model model) {
+        Users user = (Users) session.getAttribute("users");
+        if (user == null) {
+            // User not logged in, redirect to login page
+            return "redirect:/login";
+        }
 
-}
+        Product product = productService.findProductById(productId);
+        Long productID = product.getId();
+        List<Long> wishlist_productID = wishlistServiceimpl.findProductIdsByUser(user.getUid());
+
+        // Check if the product is already in the wishlist
+        boolean isProductInWishlist = wishlist_productID.contains(productID);
+
+        if (isProductInWishlist){
+            return "redirect:/User/WishListsDisplay?fail";}
+
+            WishList wishList = new WishList();
+            wishList.setCreatedBy(user);
+            wishList.setProduct(product);
+            wishList.setCategory(product.getCategory());
+            WishList wishList1 = wishlistServiceimpl.createWishList(wishList);
+        return "redirect:/User/WishListsDisplay?added";}
+    }
+
+
+

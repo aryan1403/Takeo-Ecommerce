@@ -1,4 +1,4 @@
-package com.takeo.ecommerce.entity;
+/*package com.takeo.ecommerce.entity;
 
 import lombok.*;
 
@@ -18,4 +18,5 @@ private String imageName;
 
 
 
-}
+
+}*/

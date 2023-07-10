@@ -26,5 +26,8 @@ public class Payment {
     private int expiryYear;
     private int expiryMonth;
     private int cvc;
-    private Long orderId;
+    @OneToOne
+    //payment is associated with one order.
+    @JoinColumn(name = "orderId")
+    private Order order;
 }

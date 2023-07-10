@@ -35,15 +35,22 @@ public class CartController {
                 // User not logged in, redirect to login page
                 return "redirect:/login";
             }
+
             Product product =productService.findProductById(productId);
-            product.getName();
-            // Retrieve or create the user's wishlist
-            Cart cart=new Cart();
-            cart.setUserId(user);
-            cart.setProduct(product);
-            Cart cart1=cartService.createCart(cart);
-            model.addAttribute("msg","added in wishList successfully");
-            return "redirect:/UserProducts";
+            Long productID=product.getId();
+            //check product already present or not
+            List<Long> cart_productID= cartService.findCartIdsByUsers(user.getUid());
+            boolean isProductInWishlist =cart_productID.contains(productID);
+
+            if (isProductInWishlist){
+                    return "redirect:/User/CartDisplay?fail";
+                   }
+
+                    Cart cart = new Cart();
+                    cart.setUserId(user);
+                    cart.setProduct(product);
+                    Cart cart1 = cartService.createCart(cart);
+                    return "redirect:/User/CartDisplay?added";
         }
         @GetMapping("User/CartDisplay")
         public String findAllCart(@NotNull Model model, @NotNull HttpSession session) {
@@ -61,7 +68,6 @@ public class CartController {
         @GetMapping("/deletee/{id}")
         public String deleteProductFromCart(@PathVariable("id") Long idd, @NotNull Model model) {
             cartService.deleteProductFromCart(idd);
-            model.addAttribute("msg","Remove successfully");
             return "redirect:/User/CartDisplay?success";
         }
 

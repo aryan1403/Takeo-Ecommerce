@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <style>
+    .this-wont-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    }
+
+    .text-inside-will-center {
+    text-align: center;
+    }
+
+    .container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    }
+
+    table {
+    width: 100%;
+    }
+
+    th,
+    td {
+    padding: 8px;
+    }
+
+    th {
+    font-weight: bold;
+    background-color: #ccc;
+    }
+
+    tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+    }
+
+    .wrapper {
+    max-width: 400px;
+    margin: 0 auto;
+    }
+
+    .form-field {
+    margin-bottom: 15px;
+    }
+
+    .form-field span {
+    margin-right: 10px;
+    }
+
+    input[type="text"],
+    input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    }
+
+    button.btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    }
+
+    .text-center {
+    text-align: center;
+    }
+
+    .fs-6 {
+    font-size: 14px;
+    }
+
+    .fs-6 a {
+    text-decoration: none;
+    }
+
+    .fs-6 a:hover {
+    text-decoration: underline;
+    }
+ </style>
+
+    <div th:replace="fragments/Dashbord :: header"></div>
+</head>
+
+<body>
+<div th:replace="fragments/Dashbord :: navbar"></div>
+
+
+<h4>Order Status Search</h4>
+<div class="product-container">
+<form  th:action="@{/orderByTrackingNumber}" method="Get" >
+    <div class="wrapper">
+        <div class="text-center mt-4 name">
+        </div>
+        <div class="form-field d-flex align-items-center">
+            <span class="far fa-user"></span>
+            <input type="text" name="trNumber" id="trNumber" placeholder="Enter order Tracking Number">
+        </div>
+        <button class="btn mt-3">Search</button>
+        </div>
+</form>
+</div>
+</body>
+</html>

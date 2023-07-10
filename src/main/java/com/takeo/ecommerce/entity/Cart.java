@@ -8,6 +8,8 @@ import org.hibernate.annotations.UpdateTimestamp;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -21,13 +23,15 @@ public class Cart {
     private LocalDateTime dateCreated;
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
-    @ManyToOne
+    @OneToOne
     //@JoinColumn(name = "created_by", nullable = false)
     @JoinColumn(name = "user_id")
     private Users userId;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "product_id")//,nullable=false, updatable=false)
     private Product product;
+
+
 
 
 }

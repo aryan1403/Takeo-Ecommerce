@@ -29,11 +29,20 @@
 
 <body>
 <div th:replace="fragments/Dashbord :: navbar"></div>
-<h2>Cart product</h2>
+<h3>Cart product</h3>
 <div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
-  <h3 class="text-inside-will-center" th:if="${param.success}">product remove successfully </h3>
-
+  <div th:if="${param.success}"><p>Product Deleted successfully</p></div>
 </div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <div th:if="${param.added}"><p>Product added successfully</p></div>
+</div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <div th:if="${param.fail}"><p>Product already added</p></div>
+</div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <div th:if="${param.fail}"><p>Product already added</p></div>
+</div>
+
 
 <div class="product-container">
   <div th:each="product : ${products}" class="product-box">
@@ -45,10 +54,9 @@
     <div class="product-buttons">
       <a th:href="@{/deletee/{id}(id=${product.id})}" class="buy-button">Remove</a>
       <a th:href="@{/Buy/{productId}(productId=${product.id})}" class="buy-button">Buy Product</a>
-
     </div>
   </div>
 </div>
-</body>
+ </body>
 
 </html>

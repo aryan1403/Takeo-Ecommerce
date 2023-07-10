@@ -33,17 +33,6 @@ public class ProductController {
     private ProductServiceImpl productService;
 
 
-
-   /* @GetMapping("/search")
-    public ResponseEntity<List<Product>> searchProducts(@RequestParam("query") String query){
-        return ResponseEntity.ok(productService.searchProducts(query));
-    }
-
-    @PostMapping
-    public Product createProduct(@RequestBody Product product){
-        return productService.createProduct(product);
-    }*/
-
     @GetMapping("/search")
     public String searchProducts(@RequestParam("search") String search, HttpSession session, Model model) {
         List<Product> list = productService.searchProducts(search);
@@ -69,7 +58,7 @@ public class ProductController {
     @RequestMapping("/")
     public String main() {
 
-        return "index1";
+        return "index2";
     }
 
     @GetMapping("/products")
@@ -108,11 +97,7 @@ public class ProductController {
     }
 
 
-    @GetMapping("/add-product")
-    public String addProduct(Product product, @NotNull Model model) {
-        model.addAttribute("categories", categoryService.findAllCategories());
-        return "addProduct";
-    }
+
 
     @PostMapping("/save-product")
     public String addProduct(@ModelAttribute("product") @Valid Product product,
@@ -167,9 +152,13 @@ public class ProductController {
         model.addAttribute("categories", categoryService.findAllCategories());
         return "update-product";
     }
-
+    @GetMapping("/add-product")
+    public String addProduct(Product product, @NotNull Model model) {
+        model.addAttribute("categories", categoryService.findAllCategories());
+        return "addProduct";
+    }
     @PostMapping("/save-update/{id}")
-    public String updateProduct(@PathVariable Long id, @RequestParam("image")
+    public String updateProduct(@PathVariable Long id, @RequestParam("image")//@valid
     @NotNull MultipartFile image, Product product,
                                 @NotNull BindingResult result, Model model) {
                /* if (result.hasErrors()) {
@@ -209,7 +198,7 @@ public class ProductController {
         return "redirect:/products";
     }
 
-    @GetMapping("/Buy/{productId}")
+    /*@GetMapping("/Buy/{productId}")
     public String buyProductById(@PathVariable("productId") Long productId, Model model) {
         Product product = productService.findProductById(productId);
         if (product != null) {
@@ -217,9 +206,14 @@ public class ProductController {
             model.addAttribute("products",price);
             return "redirect:/order";}
           return "redirect:/products";
-
-
-        }
+        }*/
+    @GetMapping("/update-image/{id}")
+    public String updateImage(@PathVariable Long id, @NotNull Model model) {
+        Product product = productService.findProductById(id);
+        model.addAttribute("product", product);
+        model.addAttribute("categories", categoryService.findAllCategories());
+        return "update-product";
+    }
     }
 
 

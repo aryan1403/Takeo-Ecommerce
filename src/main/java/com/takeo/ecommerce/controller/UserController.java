@@ -6,6 +6,7 @@ import java.util.List;
 import com.takeo.ecommerce.entity.Users;
 import com.takeo.ecommerce.exception.RecordNotFoundException;
 import com.takeo.ecommerce.service.impl.UserService;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -175,14 +176,14 @@ public class UserController {
 			return "redirect:/getusers";
 		}
 		@RequestMapping("/findpsw")
-		public String findBook()
+		public String searchpsw()
 		{
 			
-			return"passwordSearch";
+			return"SearchPassword";
 		}
 		
 		@GetMapping("/findpassword")
-		public String displayBookById(@RequestParam("email") String email, Model model) {
+		public String displayBookById(@RequestParam("email") String email, @NotNull Model model) {
 		    try {
 		        Users b = service.findByEmail(email);
 		        model.addAttribute("psw", b);
@@ -194,7 +195,7 @@ public class UserController {
 
 		}
 	@GetMapping("/UserProfile")
-	public String userProfile( HttpSession session, Model model) {
+	public String userProfile(@NotNull HttpSession session, Model model) {
 		Users user = (Users) session.getAttribute("users");
 		System.out.println(user.getUname());
 		if (user == null) {

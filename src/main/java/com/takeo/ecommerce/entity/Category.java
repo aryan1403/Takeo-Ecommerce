@@ -22,15 +22,11 @@ public class Category {
     //@Column(name = "name", length = 50, nullable = false, unique = true)
     private String name;
 
-    @OneToMany(mappedBy = "category", cascade =
-            {CascadeType.MERGE,
-            CascadeType.PERSIST },
-            fetch = FetchType.LAZY
-            )
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<Product> products = new HashSet<>();
 
-    private Set<Product> products = new HashSet<Product>();
 
-    public Category(String name) {
-       this.name = name;
-    }
+
+
 }
+

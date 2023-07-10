@@ -38,9 +38,10 @@ public class Users {
     private String password;
     @Column (name="ROLE_ID")
     private int role_id=2;
-    @ManyToMany
-    @JoinTable(name = "user_product",
-            joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "product_id"))
-    private List<Product> wishlist;
+    //@ManyToMany
+    //@JoinTable(name = "user_product",
+           // joinColumns = @JoinColumn(name = "user_id"),
+            //inverseJoinColumns = @JoinColumn(name = "product_id"))
+    //private List<Product> wishlist;
+
 }

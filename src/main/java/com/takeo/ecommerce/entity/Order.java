@@ -24,6 +24,14 @@ public class Order {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "SENDER_NAME")
+    private String senderName;
+    @Column(name = "RECEIVER_NAME")
+    private String receiverName;
+    @Column(name = "RECEIVER_EMAIL")
+    private String receiverEmail;
+    @Column(name = "RECEIVER_Address")
+    private String reciverAddress;
     private String orderTackingNumber;
     private int totalQuantity;
     private BigDecimal totalPrice;
@@ -32,20 +40,16 @@ public class Order {
     private LocalDateTime dateCreated;
     @UpdateTimestamp
     private LocalDateTime lastUpdated;
-    //one product /one delivery  address
-    @OneToOne(cascade = CascadeType.ALL, mappedBy = "order")
-    private Address billingAddress;
+    @ManyToOne
+    //@JoinColumn(name = "created_by", nullable = false)
+    @JoinColumn(name = "user_id")
+    private Users user;
+    /*@OneToOne
+    @JoinColumn(name = "product_id")
+    private Product product;*/
 
-    // default fetch type for one to many is LAZY
-    //one product can be many order
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER, mappedBy = "order")
-    private Set<OrderItem> orderItems = new HashSet<>();
 
-    public BigDecimal getTotalAmount(){
-        BigDecimal amount = new BigDecimal(0.0);
-        for(OrderItem item: this.orderItems){
-            amount = amount.add(item.getPrice());
-        }
-        return amount;
-    }
+
+
+
 }

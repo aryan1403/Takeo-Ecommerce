@@ -22,8 +22,8 @@
       <button class="btn btn-outline-success" type="submit">Search</button>
     </form>
     <div class="icons" id="icon">
-    <a href="login.html"  style="color:white"><i class="bi bi-box-arrow-in-right ms-4"></i></a>Login
-    <a href="register.html"  style="color:white"><i class="bi bi-person-add ms-4"></i></a>Register
+    <a th:href="@{/SignIn}" style="color:white"><i class="bi bi-box-arrow-in-right ms-4"></i>Login</a>
+    <a th:href="@{/SignOut}"  style="color:white"><i class="bi bi-person-add ms-4"></i>Register</a>
     
       
   </div>
@@ -35,7 +35,7 @@
 <div class="col-3">
 <div class="side-nav">
  <div class="logo">
-    <img src = "../static/images/logo.png" alt="logo"/>
+    <img src ="static/images/logo.png" alt="logo"/>
   </div>
      <ul>
         <li><a style = "color:black" aria-current="page" href="#"><i class="bi bi-house-door"></i></a> 

@@ -31,9 +31,15 @@
 <div th:replace="fragments/Dashbord :: navbar"></div>
 <h2>WishList</h2>
 <div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
-  <h3 class="text-inside-will-center" th:if="${param.success}">product remove successfully </h3>
-
+  <div th:if="${param.success}"><p>Product Deleted successfully</p></div>
 </div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <div th:if="${param.added}"><p>Product added successfully</p></div>
+</div>
+<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
+  <div th:if="${param.fail}"><p>Product already added</p></div>
+</div>
+
 <div class="product-container">
   <div th:each="product : ${products}" class="product-box">
     <h3 th:text="${product.id}" class="product-id" style="display: none;"></h3>

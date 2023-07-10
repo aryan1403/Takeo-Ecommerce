@@ -11,21 +11,31 @@
     <p th:text="${msg}"></p>
 
 
-</header>
-
-
-<div class="this-wont-center" style="display: flex; justify-content: center; align-items: center;">
-  <h3 class="text-inside-will-center" th:text="${products}"></h3>
-</div>
-
 <h2>Responsive Checkout</h2>
 <div class="row">
   <div class="col-75">
     <div class="container">
             <form th:action="@{/placeOrder}" method="post"th:Object="${orderRequest}">
+             <!--   <div class="row">
+                    <div class="col-50">
+                    <label for="Product.id"><i class="fa fa-user"></i>Product id</label>
+                    <input type="number" id="Product.id" class="form-control" name="Products.id" placeholder="Product id" />
+                </div> -->
+
            <div class="row">
            <div class="col-50">
+
             <h3>Order Payment </h3>
+               <label for="Order.receiverName"><i class="fa fa-user"></i>Receiver Name</label>
+               <input type="text" id="Order.receiverName"name="order.receiverName" placeholder="Enter name">
+
+               <label for="Order.receiverEmail"><i class="fa fa-user"></i>Reciver Email</label>
+               <input type="email" id="Order.receiverEmail"name="order.receiverEmail" placeholder="Enter Reciver Email">
+
+               <label for="Order.reciverAddress"><i class="fa fa-user"></i> Reciver Address</label>
+               <input type="text" id="Order.reciverAddress"name="order.reciverAddress" placeholder="Enter Reciver address">
+
+
             <label for="Order.totalQuantity"><i class="fa fa-user"></i>Total Quantity</label>
             <input type="number" id="Order.totalQuantity"name="order.totalQuantity" placeholder="2000">
 
@@ -78,10 +88,6 @@
                 <label for="Payment.cvc">CVV</label>
                 <input type="number" id="Payment.cvc" name="Payment.cvc" placeholder="123">
               </div>
-                <div class="col-50">
-                    <label for="Payment.orderId">Order ID</label>
-                    <input type="number" id="Payment.orderId" name="Payment.orderId" placeholder="1234">
-                </div>
               <label>
                 <input type="checkbox" checked="checked" name="sameadr"> Shipping address same as billing
               </label>
@@ -90,6 +96,7 @@
            </div>
            </div>
            </div>
+
         </form>
     </div>
   </div>
